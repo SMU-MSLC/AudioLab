@@ -8,11 +8,10 @@
 
 #import "ViewController.h"
 #import "Novocaine.h"
-#import "AudioFileReader.h"
+
 
 @interface ViewController ()
 @property (strong, nonatomic) Novocaine *audioManager;
-@property (strong, nonatomic) AudioFileReader *fileReader;
 
 @end
 
@@ -28,16 +27,7 @@
     return _audioManager;
 }
 
--(AudioFileReader*)fileReader{
-    if(!_fileReader){
-        NSURL *inputFileURL = [[NSBundle mainBundle] URLForResource:@"satisfaction" withExtension:@"mp3"];
-        _fileReader = [[AudioFileReader alloc]
-                       initWithAudioFileURL:inputFileURL
-                       samplingRate:self.audioManager.samplingRate
-                       numChannels:self.audioManager.numOutputChannels];
-    }
-    return _fileReader;
-}
+
 
 #pragma mark VC Life Cycle
 - (void)viewDidLoad {
@@ -48,15 +38,21 @@
     //        NSLog(@"%f", data[0]);
     //    }];
     
-    
-    [self.fileReader play];
-    self.fileReader.currentTime = 0.0;
-    
-    __block ViewController * __weak  weakSelf = self; // don't incrememt ARC'
+    double frequency = 630.0; //starting frequency
+    __block float phase = 0.0;
+    double phaseIncrement = 2*M_PI*frequency/self.audioManager.samplingRate;
+    double sineWaveRepeatMax = 2*M_PI;
+
     [self.audioManager setOutputBlock:^(float *data, UInt32 numFrames, UInt32 numChannels)
      {
-         [weakSelf.fileReader retrieveFreshAudio:data numFrames:numFrames numChannels:numChannels];
-         NSLog(@"Time: %f", weakSelf.fileReader.currentTime);
+         for (int i=0; i < numFrames; ++i)
+         {
+             data[i] = sin(phase);
+             
+             phase += phaseIncrement;
+             if (phase >= sineWaveRepeatMax) phase -= sineWaveRepeatMax;
+             
+         }
      }];
     
     

@@ -16,7 +16,6 @@
 		B6BD9E381D6E384A0009AB3F /* AudioLabTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B6BD9E371D6E384A0009AB3F /* AudioLabTests.m */; };
 		B6BD9E431D6E384A0009AB3F /* AudioLabUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B6BD9E421D6E384A0009AB3F /* AudioLabUITests.m */; };
 		B6BD9E531D6E398F0009AB3F /* Novocaine.m in Sources */ = {isa = PBXBuildFile; fileRef = B6BD9E521D6E398F0009AB3F /* Novocaine.m */; };
-		B6BD9E561D6E42A30009AB3F /* AudioFileReader.m in Sources */ = {isa = PBXBuildFile; fileRef = B6BD9E551D6E42A30009AB3F /* AudioFileReader.m */; };
 		B6BD9E591D6E43140009AB3F /* CircularBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = B6BD9E581D6E43140009AB3F /* CircularBuffer.m */; };
 		B6BD9E5B1D6E46790009AB3F /* satisfaction.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B6BD9E5A1D6E46790009AB3F /* satisfaction.mp3 */; };
 /* End PBXBuildFile section */
@@ -57,8 +56,6 @@
 		B6BD9E441D6E384A0009AB3F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B6BD9E511D6E398F0009AB3F /* Novocaine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Novocaine.h; path = AudioDSPUtils/Novocaine.h; sourceTree = "<group>"; };
 		B6BD9E521D6E398F0009AB3F /* Novocaine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Novocaine.m; path = AudioDSPUtils/Novocaine.m; sourceTree = "<group>"; };
-		B6BD9E541D6E42A30009AB3F /* AudioFileReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AudioFileReader.h; path = AudioDSPUtils/AudioFileReader.h; sourceTree = "<group>"; };
-		B6BD9E551D6E42A30009AB3F /* AudioFileReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AudioFileReader.m; path = AudioDSPUtils/AudioFileReader.m; sourceTree = "<group>"; };
 		B6BD9E571D6E43140009AB3F /* CircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CircularBuffer.h; path = AudioDSPUtils/CircularBuffer.h; sourceTree = "<group>"; };
 		B6BD9E581D6E43140009AB3F /* CircularBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CircularBuffer.m; path = AudioDSPUtils/CircularBuffer.m; sourceTree = "<group>"; };
 		B6BD9E5A1D6E46790009AB3F /* satisfaction.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = satisfaction.mp3; sourceTree = "<group>"; };
@@ -158,8 +155,6 @@
 			children = (
 				B6BD9E571D6E43140009AB3F /* CircularBuffer.h */,
 				B6BD9E581D6E43140009AB3F /* CircularBuffer.m */,
-				B6BD9E541D6E42A30009AB3F /* AudioFileReader.h */,
-				B6BD9E551D6E42A30009AB3F /* AudioFileReader.m */,
 				B6BD9E511D6E398F0009AB3F /* Novocaine.h */,
 				B6BD9E521D6E398F0009AB3F /* Novocaine.m */,
 			);
@@ -301,7 +296,6 @@
 				B6BD9E531D6E398F0009AB3F /* Novocaine.m in Sources */,
 				B6BD9E251D6E384A0009AB3F /* ViewController.m in Sources */,
 				B6BD9E221D6E384A0009AB3F /* AppDelegate.m in Sources */,
-				B6BD9E561D6E42A30009AB3F /* AudioFileReader.m in Sources */,
 				B6BD9E1F1D6E384A0009AB3F /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
