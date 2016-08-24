@@ -2,7 +2,7 @@
 //  ViewController.m
 //  AudioLab
 //
-//  Created by Eric Larson on 8/24/16.
+//  Created by Eric Larson
 //  Copyright © 2016 Eric Larson. All rights reserved.
 //
 
@@ -20,6 +20,7 @@
 
 @implementation ViewController
 
+#pragma mark Lazy Instantiation
 -(Novocaine*)audioManager{
     if(!_audioManager){
         _audioManager = [Novocaine audioManager];
@@ -27,6 +28,18 @@
     return _audioManager;
 }
 
+-(AudioFileReader*)fileReader{
+    if(!_fileReader){
+        NSURL *inputFileURL = [[NSBundle mainBundle] URLForResource:@"satisfaction" withExtension:@"mp3"];
+        _fileReader = [[AudioFileReader alloc]
+                       initWithAudioFileURL:inputFileURL
+                       samplingRate:self.audioManager.samplingRate
+                       numChannels:self.audioManager.numOutputChannels];
+    }
+    return _fileReader;
+}
+
+#pragma mark VC Life Cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
@@ -36,17 +49,10 @@
     //    }];
     
     
-    NSURL *inputFileURL = [[NSBundle mainBundle] URLForResource:@"satisfaction" withExtension:@"mp3"];
-    
-    self.fileReader = [[AudioFileReader alloc]
-                       initWithAudioFileURL:inputFileURL
-                       samplingRate:self.audioManager.samplingRate
-                       numChannels:self.audioManager.numOutputChannels];
-    
     [self.fileReader play];
     self.fileReader.currentTime = 0.0;
     
-    __block ViewController * __weak  weakSelf = self;
+    __block ViewController * __weak  weakSelf = self; // don't incrememt ARC'
     [self.audioManager setOutputBlock:^(float *data, UInt32 numFrames, UInt32 numChannels)
      {
          [weakSelf.fileReader retrieveFreshAudio:data numFrames:numFrames numChannels:numChannels];
