@@ -15,6 +15,7 @@
 		B6BD9E2D1D6E384A0009AB3F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6BD9E2B1D6E384A0009AB3F /* LaunchScreen.storyboard */; };
 		B6BD9E381D6E384A0009AB3F /* AudioLabTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B6BD9E371D6E384A0009AB3F /* AudioLabTests.m */; };
 		B6BD9E431D6E384A0009AB3F /* AudioLabUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B6BD9E421D6E384A0009AB3F /* AudioLabUITests.m */; };
+		B6BD9E531D6E398F0009AB3F /* Novocaine.m in Sources */ = {isa = PBXBuildFile; fileRef = B6BD9E521D6E398F0009AB3F /* Novocaine.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,8 @@
 		B6BD9E3E1D6E384A0009AB3F /* AudioLabUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AudioLabUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6BD9E421D6E384A0009AB3F /* AudioLabUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioLabUITests.m; sourceTree = "<group>"; };
 		B6BD9E441D6E384A0009AB3F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B6BD9E511D6E398F0009AB3F /* Novocaine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Novocaine.h; path = AudioDSPUtils/Novocaine.h; sourceTree = "<group>"; };
+		B6BD9E521D6E398F0009AB3F /* Novocaine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Novocaine.m; path = AudioDSPUtils/Novocaine.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +84,7 @@
 		B6BD9E111D6E384A0009AB3F = {
 			isa = PBXGroup;
 			children = (
+				B6BD9E501D6E39660009AB3F /* DSPUtils */,
 				B6BD9E1C1D6E384A0009AB3F /* AudioLab */,
 				B6BD9E361D6E384A0009AB3F /* AudioLabTests */,
 				B6BD9E411D6E384A0009AB3F /* AudioLabUITests */,
@@ -138,6 +142,15 @@
 				B6BD9E441D6E384A0009AB3F /* Info.plist */,
 			);
 			path = AudioLabUITests;
+			sourceTree = "<group>";
+		};
+		B6BD9E501D6E39660009AB3F /* DSPUtils */ = {
+			isa = PBXGroup;
+			children = (
+				B6BD9E511D6E398F0009AB3F /* Novocaine.h */,
+				B6BD9E521D6E398F0009AB3F /* Novocaine.m */,
+			);
+			name = DSPUtils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -270,6 +283,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6BD9E531D6E398F0009AB3F /* Novocaine.m in Sources */,
 				B6BD9E251D6E384A0009AB3F /* ViewController.m in Sources */,
 				B6BD9E221D6E384A0009AB3F /* AppDelegate.m in Sources */,
 				B6BD9E1F1D6E384A0009AB3F /* main.m in Sources */,
@@ -496,6 +510,7 @@
 				B6BD9E491D6E384A0009AB3F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B6BD9E4A1D6E384A0009AB3F /* Build configuration list for PBXNativeTarget "AudioLabTests" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +519,7 @@
 				B6BD9E4C1D6E384A0009AB3F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B6BD9E4D1D6E384A0009AB3F /* Build configuration list for PBXNativeTarget "AudioLabUITests" */ = {
 			isa = XCConfigurationList;
@@ -512,6 +528,7 @@
 				B6BD9E4F1D6E384A0009AB3F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
