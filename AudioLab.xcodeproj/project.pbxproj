@@ -19,6 +19,7 @@
 		B6BD9E591D6E43140009AB3F /* CircularBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = B6BD9E581D6E43140009AB3F /* CircularBuffer.m */; };
 		B6BD9E5B1D6E46790009AB3F /* satisfaction.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B6BD9E5A1D6E46790009AB3F /* satisfaction.mp3 */; };
 		B6BD9E5E1D6E59880009AB3F /* SMUGraphHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B6BD9E5D1D6E59880009AB3F /* SMUGraphHelper.m */; };
+		B6BD9E641D6F4BA90009AB3F /* FFTHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B6BD9E631D6F4BA90009AB3F /* FFTHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,8 @@
 		B6BD9E5A1D6E46790009AB3F /* satisfaction.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = satisfaction.mp3; sourceTree = "<group>"; };
 		B6BD9E5C1D6E59880009AB3F /* SMUGraphHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUGraphHelper.h; sourceTree = "<group>"; };
 		B6BD9E5D1D6E59880009AB3F /* SMUGraphHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUGraphHelper.m; sourceTree = "<group>"; };
+		B6BD9E621D6F4BA90009AB3F /* FFTHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FFTHelper.h; path = AudioDSPUtils/FFTHelper.h; sourceTree = "<group>"; };
+		B6BD9E631D6F4BA90009AB3F /* FFTHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FFTHelper.m; path = AudioDSPUtils/FFTHelper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +161,8 @@
 		B6BD9E501D6E39660009AB3F /* DSPUtils */ = {
 			isa = PBXGroup;
 			children = (
+				B6BD9E621D6F4BA90009AB3F /* FFTHelper.h */,
+				B6BD9E631D6F4BA90009AB3F /* FFTHelper.m */,
 				B6BD9E571D6E43140009AB3F /* CircularBuffer.h */,
 				B6BD9E581D6E43140009AB3F /* CircularBuffer.m */,
 				B6BD9E511D6E398F0009AB3F /* Novocaine.h */,
@@ -299,6 +304,7 @@
 			files = (
 				B6BD9E5E1D6E59880009AB3F /* SMUGraphHelper.m in Sources */,
 				B6BD9E591D6E43140009AB3F /* CircularBuffer.m in Sources */,
+				B6BD9E641D6F4BA90009AB3F /* FFTHelper.m in Sources */,
 				B6BD9E531D6E398F0009AB3F /* Novocaine.m in Sources */,
 				B6BD9E251D6E384A0009AB3F /* ViewController.m in Sources */,
 				B6BD9E221D6E384A0009AB3F /* AppDelegate.m in Sources */,

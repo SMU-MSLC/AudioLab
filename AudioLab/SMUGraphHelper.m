@@ -167,7 +167,7 @@ typedef struct {
 }
 
 -(int)getNumPointsInBytes{
-    return sizeof(points);
+    return sizeof(points[0])*graphSize;
 }
 
 -(struct point)getPointAt:(unsigned int)index{
@@ -187,7 +187,7 @@ typedef struct {
 }
 
 -(int)getNumColorPointsInBytes{
-    return sizeof(colors);
+    return sizeof(colors[0])*graphSize;
 }
 
 

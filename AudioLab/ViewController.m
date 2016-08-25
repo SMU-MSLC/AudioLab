@@ -10,6 +10,7 @@
 #import "Novocaine.h"
 #import "CircularBuffer.h"
 #import "SMUGraphHelper.h"
+#import "FFTHelper.h"
 
 #define BUFFER_SIZE 2048
 
@@ -17,6 +18,7 @@
 @property (strong, nonatomic) Novocaine *audioManager;
 @property (strong, nonatomic) CircularBuffer *buffer;
 @property (strong, nonatomic) SMUGraphHelper *graphHelper;
+@property (strong, nonatomic) FFTHelper *fftHelper;
 @end
 
 
@@ -42,13 +44,20 @@
     if(!_graphHelper){
         _graphHelper = [[SMUGraphHelper alloc]initWithController:self
                                         preferredFramesPerSecond:15
-                                                       numGraphs:1
+                                                       numGraphs:2
                                                        plotStyle:PlotStyleSeparated
                                                maxPointsPerGraph:BUFFER_SIZE];
     }
     return _graphHelper;
 }
 
+-(FFTHelper*)fftHelper{
+    if(!_fftHelper){
+        _fftHelper = [[FFTHelper alloc]initWithFFTSize:BUFFER_SIZE];
+    }
+    
+    return _fftHelper;
+}
 
 
 #pragma mark VC Life Cycle
@@ -74,6 +83,8 @@
     
     // get audio stream data
     float* arrayData = malloc(sizeof(float)*BUFFER_SIZE);
+    float* fftMagnitude = malloc(sizeof(float)*BUFFER_SIZE/2);
+    
     [self.buffer fetchFreshData:arrayData withNumSamples:BUFFER_SIZE];
     
     //send off for graphing
@@ -81,8 +92,20 @@
                     withDataLength:BUFFER_SIZE
                      forGraphIndex:0];
     
+    // take forward FFT
+    [self.fftHelper performForwardFFTWithData:arrayData
+                   andCopydBMagnitudeToBuffer:fftMagnitude];
+    
+    // graph the FFT Data
+    [self.graphHelper setGraphData:fftMagnitude
+                    withDataLength:BUFFER_SIZE/2
+                     forGraphIndex:1
+                 withNormalization:64.0
+                     withZeroValue:-60];
+    
     [self.graphHelper update]; // update the graph
     free(arrayData);
+    free(fftMagnitude);
 }
 
 //  override the GLKView draw function, from OpenGLES
