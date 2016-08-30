@@ -12,7 +12,7 @@
 #import "SMUGraphHelper.h"
 #import "FFTHelper.h"
 
-#define BUFFER_SIZE 2048
+#define BUFFER_SIZE 2048*4
 
 @interface ViewController ()
 @property (strong, nonatomic) Novocaine *audioManager;
@@ -66,7 +66,7 @@
     // Do any additional setup after loading the view, typically from a nib.
     
    
-    [self.graphHelper setScreenBoundsBottomHalf];
+    [self.graphHelper setFullScreenBounds];
     
     __block ViewController * __weak  weakSelf = self;
     [self.audioManager setInputBlock:^(float *data, UInt32 numFrames, UInt32 numChannels){
