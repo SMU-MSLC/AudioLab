@@ -8,15 +8,30 @@
 
 #import "ViewController.h"
 #import "Novocaine.h"
+#import "AudioFileReader.h"
 
 @interface ViewController ()
 @property (strong, nonatomic) Novocaine* audioManager;
-
+@property (strong, nonatomic) AudioFileReader *fileReader;
 @end
 
 
 
 @implementation ViewController
+
+
+-(AudioFileReader*)fileReader{
+    if(!_fileReader){
+        NSURL* file = [[NSBundle mainBundle] URLForResource:@"satisfaction" withExtension:@"mp3"];
+        
+        _fileReader = [[AudioFileReader alloc]
+                       initWithAudioFileURL:file
+                       samplingRate:self.audioManager.samplingRate
+                       numChannels:self.audioManager.numInputChannels];
+    }
+    return _fileReader;
+}
+
 
 -(Novocaine*)audioManager{
     if(!_audioManager){
@@ -29,8 +44,16 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    [self.audioManager setInputBlock:^(float *data, UInt32 numFrames, UInt32 numChannels){
-        NSLog(@"%f", data[0]);
+//    [self.audioManager setInputBlock:^(float *data, UInt32 numFrames, UInt32 numChannels){
+//        NSLog(@"%f", data[0]);
+//    }];
+    
+    [self.fileReader play];
+    self.fileReader.currentTime = 0.0;
+    
+    __block ViewController* __weak weakSelf = self;
+    [self.audioManager setOutputBlock:^(float* data, UInt32 numFrames, UInt32 numChannels){
+        [weakSelf.fileReader retrieveFreshAudio:data numFrames:numFrames numChannels:numChannels];
     }];
     
     [self.audioManager play];
