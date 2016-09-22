@@ -12,16 +12,17 @@
 #import "SMUGraphHelper.h"
 #import "FFTHelper.h"
 
-#define BUFFER_SIZE 2048
+#define BUFFER_SIZE 4096
 
 @interface ViewController ()
 @property (strong, nonatomic) Novocaine *audioManager;
 @property (strong, nonatomic) CircularBuffer *buffer;
 @property (strong, nonatomic) SMUGraphHelper *graphHelper;
 @property (strong, nonatomic) FFTHelper *fftHelper;
+@property (weak, nonatomic) IBOutlet UILabel *label1;
+@property (weak, nonatomic) IBOutlet UILabel *label2;
+@property (weak, nonatomic) IBOutlet UISwitch *lockSwitch;
 @end
-
-
 
 @implementation ViewController
 
@@ -82,8 +83,8 @@
     // just plot the audio stream
     
     // get audio stream data
-    float* arrayData = malloc(sizeof(float)*BUFFER_SIZE);
-    float* fftMagnitude = malloc(sizeof(float)*BUFFER_SIZE/2);
+    float* arrayData = calloc(BUFFER_SIZE*2, sizeof(float));
+    float* fftMagnitude = malloc(sizeof(float)*BUFFER_SIZE*2);
     
     [self.buffer fetchFreshData:arrayData withNumSamples:BUFFER_SIZE];
     
@@ -102,6 +103,22 @@
                      forGraphIndex:1
                  withNormalization:64.0
                      withZeroValue:-60];
+    
+    // find the peaks
+    float peak1 = fftMagnitude[0], peak2 = fftMagnitude[0];
+    for (int i = 0; i < BUFFER_SIZE*2; i++) {
+        if (fftMagnitude[i] > peak1) {
+            peak2 = peak1;
+            peak1 = fftMagnitude[i];
+        } else if (fftMagnitude[i] > peak2) {
+            peak2 = fftMagnitude[i];
+        }
+    }
+    
+    if (self.lockSwitch.isOn) {
+        self.label1.text = [NSString stringWithFormat:@"%f", peak1];
+        self.label2.text = [NSString stringWithFormat:@"%f", peak2];
+    }
     
     [self.graphHelper update]; // update the graph
     free(arrayData);
