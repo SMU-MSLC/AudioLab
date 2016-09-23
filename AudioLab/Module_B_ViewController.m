@@ -13,7 +13,7 @@
 #import "FFTHelper.h"
 
 #define BUFFER_SIZE 4096
-#define deltaF 5.3833
+#define deltaF 10.7666
 
 @interface Module_B_ViewController ()
 @property (strong, nonatomic) Novocaine *audioManager;
@@ -23,6 +23,8 @@
 @property (weak, nonatomic) IBOutlet UISwitch *lockSwitch;
 @property (weak, nonatomic) IBOutlet UISlider *pitchSlider;
 @property (weak, nonatomic) IBOutlet UILabel *dopplerLabel;
+@property float lastLeftAvg;
+@property float lastRightAvg;
 
 @end
 
@@ -61,20 +63,18 @@
     return _fftHelper;
 }
 
-
 #pragma mark VC Life Cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    
-    [self.graphHelper setScreenBoundsBottomHalf];
+    _lastLeftAvg = 0.0;
+    _lastRightAvg = 0.0;
     
     __block Module_B_ViewController * __weak  weakSelf = self;
     [self.audioManager setInputBlock:^(float *data, UInt32 numFrames, UInt32 numChannels){
         [weakSelf.buffer addNewFloatData:data withNumSamples:numFrames];
     }];
-    
     
     double frequency = self.pitchSlider.value; //starting frequency
     __block float phase = 0.0;
@@ -96,8 +96,6 @@
         
     [self.audioManager play];
 }
-
-
 
 - (IBAction)onSliderChange:(id)sender {
     double frequency = self.pitchSlider.value; //starting frequency
@@ -124,66 +122,68 @@
 #pragma mark GLK Inherited Functions
 - (void)update{
     
+    static int onlyUpdate = 0;
+    
     float frequency = self.pitchSlider.value;
     
     // get audio stream data
-    float* arrayData = calloc(BUFFER_SIZE*2, sizeof(float));
-    float* fftMagnitude = malloc(sizeof(float)*BUFFER_SIZE);
+    float* arrayData = calloc(BUFFER_SIZE, sizeof(float));
+    float* fftMagnitude = malloc(sizeof(float)*BUFFER_SIZE/2);
     
     [self.buffer fetchFreshData:arrayData withNumSamples:BUFFER_SIZE];
-    [self.graphHelper setGraphData:arrayData
-                    withDataLength:BUFFER_SIZE
-                     forGraphIndex:0];
-    
     
     // take forward FFT
     [self.fftHelper performForwardFFTWithData:arrayData
                    andCopydBMagnitudeToBuffer:fftMagnitude];
     
-    [self.graphHelper setGraphData:fftMagnitude
-                    withDataLength:BUFFER_SIZE/2
-                     forGraphIndex:1
-                 withNormalization:64.0
-                     withZeroValue:-60];
     
-    int frequencyOutputIndex = frequency/deltaF;
-    int dopplerVariance = 20;
+    int frequencyOutputIndex = frequency/(deltaF);
+    int dopplerVariance = 12;
     float leftDopplerAvg = 0.0;
     float rightDopplerAvg = 0.0;
     
     float sum = 0.0;
-    
-    for(int i = frequencyOutputIndex - dopplerVariance ; i < frequencyOutputIndex; i++){
-        
+    for(int i = frequencyOutputIndex - (dopplerVariance) ; i < frequencyOutputIndex; i++){
         sum+=fftMagnitude[i];
-        NSLog(@"array: %f", arrayData[i]);
-
     }
     
     leftDopplerAvg = sum/dopplerVariance;
     
     sum = 0.0;
-    
-    for(int i = frequencyOutputIndex  ; i < frequencyOutputIndex + dopplerVariance; i++){
-        
+    for(int i = frequencyOutputIndex+1  ; i < frequencyOutputIndex + (dopplerVariance); i++){
         sum+=fftMagnitude[i];
-//        NSLog(@"right sum: %f", fftMagnitude[i]);
-        
     }
     
     rightDopplerAvg = sum /dopplerVariance;
-    NSLog(@"left: %f    right: %f", leftDopplerAvg, rightDopplerAvg);
-    if(leftDopplerAvg > rightDopplerAvg){
-        self.dopplerLabel.text = @"Away";
-    }
-    else{
-        self.dopplerLabel.text = @"Towards";
-    }
     
     
-    [self.graphHelper update];
+    if (self.lastLeftAvg != 0.0&& self.lastRightAvg != 0.0) {
+        NSLog(@"left diff: %f    right diff: %f", leftDopplerAvg/self.lastLeftAvg, rightDopplerAvg/self.lastRightAvg);
+        float leftDiff = leftDopplerAvg/self.lastLeftAvg;
+        float rightDiff = rightDopplerAvg/self.lastRightAvg;
+        if (onlyUpdate == 5) {
+            if (leftDiff < rightDiff && leftDiff < .9) {
+                self.dopplerLabel.text = @"Away";
+            } else if(rightDiff < leftDiff && rightDiff < .9) {
+                self.dopplerLabel.text = @"Towards";
+            } else {
+                self.dopplerLabel.text = @"Stationary";
+            }
+            onlyUpdate = 0;
+        }
+        
+    }
+    
+    self.lastLeftAvg = leftDopplerAvg;
+    self.lastRightAvg = rightDopplerAvg;
     free(arrayData);
     free(fftMagnitude);
+    
+    onlyUpdate++;
+}
+-(void) viewWillDisappear:(BOOL)animated {
+    [self.audioManager pause];
+    [super viewWillDisappear:false];
 }
 
 //  override the GLKView draw function, from OpenGLES

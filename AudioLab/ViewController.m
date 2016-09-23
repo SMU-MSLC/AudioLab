@@ -75,6 +75,23 @@
         [weakSelf.buffer addNewFloatData:data withNumSamples:numFrames];
     }];
     
+    double frequency = 0.0;
+    __block float phase = 0.0;
+    double phaseIncrement = 2*M_PI*frequency/self.audioManager.samplingRate;
+    double sineWaveRepeatMax = 2*M_PI;
+    
+    [self.audioManager setOutputBlock:^(float *data, UInt32 numFrames, UInt32 numChannels)
+     {
+         for (int i=0; i < numFrames; ++i)
+         {
+             data[i] = sin(phase);
+             
+             phase += phaseIncrement;
+             if (phase >= sineWaveRepeatMax) phase -= sineWaveRepeatMax;
+             
+         }
+     }];
+    
     [self.audioManager play];
 }
 

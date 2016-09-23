@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="J2Z-OK-ihe">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VQU-JU-5aW">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -7,6 +7,22 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="tBs-H9-maJ">
+            <objects>
+                <navigationController id="VQU-JU-5aW" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="BJ0-qq-orH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="5Ef-ul-6yc" kind="relationship" relationship="rootViewController" id="25d-r9-GwT"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hWA-5O-0XL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1326" y="169"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="dAR-kP-32Z">
             <objects>
@@ -48,6 +64,7 @@
                             <constraint firstItem="1Iz-iz-Y5l" firstAttribute="top" secondItem="Ppn-Gm-47Z" secondAttribute="bottom" constant="189" id="uzU-zX-RrU"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="o9t-7W-uYg"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RV2-LV-2OQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -116,14 +133,7 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="US9-Tz-Zh2">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="18500" minValue="15000" maxValue="20000" translatesAutoresizingMaskIntoConstraints="NO" id="rSV-hJ-bOC">
-                                <frame key="frameInset" minX="14" width="347" height="31" maxY="115"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="18500" minValue="15000" maxValue="20000" translatesAutoresizingMaskIntoConstraints="NO" id="rSV-hJ-bOC">
                                 <connections>
                                     <action selector="onSliderChange:" destination="J2Z-OK-ihe" eventType="valueChanged" id="Sv3-vC-wGR"/>
                                 </connections>
@@ -131,10 +141,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="XxJ-bs-7HT" firstAttribute="top" secondItem="IeB-Sr-jAV" secondAttribute="bottom" constant="135" id="7MD-T7-mb7"/>
-                            <constraint firstItem="XxJ-bs-7HT" firstAttribute="leading" secondItem="US9-Tz-Zh2" secondAttribute="leading" id="Rbh-m7-Int"/>
-                            <constraint firstItem="US9-Tz-Zh2" firstAttribute="centerY" secondItem="of6-xg-CDq" secondAttribute="centerY" id="dij-Te-Ynz"/>
-                            <constraint firstItem="US9-Tz-Zh2" firstAttribute="centerX" secondItem="of6-xg-CDq" secondAttribute="centerX" id="jPE-Ev-eT9"/>
+                            <constraint firstItem="rSV-hJ-bOC" firstAttribute="leading" secondItem="of6-xg-CDq" secondAttribute="leadingMargin" id="Bma-gy-Nqq"/>
+                            <constraint firstItem="XxJ-bs-7HT" firstAttribute="centerX" secondItem="of6-xg-CDq" secondAttribute="centerX" id="HR3-XE-gPc"/>
+                            <constraint firstItem="LWk-60-KaD" firstAttribute="top" secondItem="rSV-hJ-bOC" secondAttribute="bottom" constant="116" id="K2i-CC-qFJ"/>
+                            <constraint firstItem="rSV-hJ-bOC" firstAttribute="centerX" secondItem="XxJ-bs-7HT" secondAttribute="centerX" id="NPh-uy-eOW"/>
+                            <constraint firstItem="XxJ-bs-7HT" firstAttribute="top" secondItem="IeB-Sr-jAV" secondAttribute="bottom" constant="91" id="mBy-tc-pTc"/>
                         </constraints>
                     </view>
                     <connections>
