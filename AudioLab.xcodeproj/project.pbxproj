@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07AE8E891D94DFA900992DB2 /* Module_B_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07AE8E881D94DFA900992DB2 /* Module_B_ViewController.m */; };
 		B6BD9E1F1D6E384A0009AB3F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B6BD9E1E1D6E384A0009AB3F /* main.m */; };
 		B6BD9E221D6E384A0009AB3F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B6BD9E211D6E384A0009AB3F /* AppDelegate.m */; };
 		B6BD9E251D6E384A0009AB3F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6BD9E241D6E384A0009AB3F /* ViewController.m */; };
@@ -40,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		07AE8E871D94DFA900992DB2 /* Module_B_ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Module_B_ViewController.h; sourceTree = "<group>"; };
+		07AE8E881D94DFA900992DB2 /* Module_B_ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Module_B_ViewController.m; sourceTree = "<group>"; };
 		B6BD9E1A1D6E384A0009AB3F /* AudioLab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioLab.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6BD9E1E1D6E384A0009AB3F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B6BD9E201D6E384A0009AB3F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -121,6 +124,8 @@
 				B6BD9E231D6E384A0009AB3F /* ViewController.h */,
 				B6BD9E241D6E384A0009AB3F /* ViewController.m */,
 				B6BD9E261D6E384A0009AB3F /* Main.storyboard */,
+				07AE8E871D94DFA900992DB2 /* Module_B_ViewController.h */,
+				07AE8E881D94DFA900992DB2 /* Module_B_ViewController.m */,
 				B6BD9E291D6E384A0009AB3F /* Assets.xcassets */,
 				B6BD9E2B1D6E384A0009AB3F /* LaunchScreen.storyboard */,
 				B6BD9E2E1D6E384A0009AB3F /* Info.plist */,
@@ -238,6 +243,7 @@
 				TargetAttributes = {
 					B6BD9E191D6E384A0009AB3F = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = F69WJ27LN4;
 					};
 					B6BD9E321D6E384A0009AB3F = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -303,6 +309,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6BD9E5E1D6E59880009AB3F /* SMUGraphHelper.m in Sources */,
+				07AE8E891D94DFA900992DB2 /* Module_B_ViewController.m in Sources */,
 				B6BD9E591D6E43140009AB3F /* CircularBuffer.m in Sources */,
 				B6BD9E641D6F4BA90009AB3F /* FFTHelper.m in Sources */,
 				B6BD9E531D6E398F0009AB3F /* Novocaine.m in Sources */,
@@ -449,7 +456,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = F69WJ27LN4;
 				INFOPLIST_FILE = AudioLab/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = SMU.AudioLab;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -460,7 +469,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = F69WJ27LN4;
 				INFOPLIST_FILE = AudioLab/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = SMU.AudioLab;
 				PRODUCT_NAME = "$(TARGET_NAME)";

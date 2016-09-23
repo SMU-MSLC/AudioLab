@@ -12,16 +12,18 @@
 #import "SMUGraphHelper.h"
 #import "FFTHelper.h"
 
-#define BUFFER_SIZE 2048
+#define BUFFER_SIZE 4096
+#define deltaF 5.3833
 
 @interface ViewController ()
 @property (strong, nonatomic) Novocaine *audioManager;
 @property (strong, nonatomic) CircularBuffer *buffer;
 @property (strong, nonatomic) SMUGraphHelper *graphHelper;
 @property (strong, nonatomic) FFTHelper *fftHelper;
+@property (weak, nonatomic) IBOutlet UILabel *label1;
+@property (weak, nonatomic) IBOutlet UILabel *label2;
+@property (weak, nonatomic) IBOutlet UISwitch *lockSwitch;
 @end
-
-
 
 @implementation ViewController
 
@@ -73,6 +75,23 @@
         [weakSelf.buffer addNewFloatData:data withNumSamples:numFrames];
     }];
     
+    double frequency = 0.0;
+    __block float phase = 0.0;
+    double phaseIncrement = 2*M_PI*frequency/self.audioManager.samplingRate;
+    double sineWaveRepeatMax = 2*M_PI;
+    
+    [self.audioManager setOutputBlock:^(float *data, UInt32 numFrames, UInt32 numChannels)
+     {
+         for (int i=0; i < numFrames; ++i)
+         {
+             data[i] = sin(phase);
+             
+             phase += phaseIncrement;
+             if (phase >= sineWaveRepeatMax) phase -= sineWaveRepeatMax;
+             
+         }
+     }];
+    
     [self.audioManager play];
 }
 
@@ -82,8 +101,8 @@
     // just plot the audio stream
     
     // get audio stream data
-    float* arrayData = malloc(sizeof(float)*BUFFER_SIZE);
-    float* fftMagnitude = malloc(sizeof(float)*BUFFER_SIZE/2);
+    float* arrayData = calloc(BUFFER_SIZE*2, sizeof(float));
+    float* fftMagnitude = malloc(sizeof(float)*BUFFER_SIZE);
     
     [self.buffer fetchFreshData:arrayData withNumSamples:BUFFER_SIZE];
     
@@ -102,6 +121,29 @@
                      forGraphIndex:1
                  withNormalization:64.0
                      withZeroValue:-60];
+    
+    // find the peaks
+    float peak1 = fftMagnitude[0], peak2 = fftMagnitude[0];
+    int index1 = 0, index2 = 0;
+    
+    for (int i = 1; i < BUFFER_SIZE/2; i++) {
+        if (fftMagnitude[i] > peak1) {
+            peak1 = fftMagnitude[i];
+            index1 = i;
+        }
+    }
+    
+    for (int i = 1; i < BUFFER_SIZE/2; i++) {
+        if (fftMagnitude[i] > peak2 && (i > index1 + 10 || i < index1 - 10)) {
+            peak2 = fftMagnitude[i];
+            index2 = i;
+        }
+    }
+    
+    if (self.lockSwitch.isOn) {
+        self.label1.text = [NSString stringWithFormat:@"%f", index1*deltaF*2];
+        self.label2.text = [NSString stringWithFormat:@"%f", index2*deltaF*2];
+    }
     
     [self.graphHelper update]; // update the graph
     free(arrayData);
