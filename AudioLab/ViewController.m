@@ -13,6 +13,7 @@
 #import "FFTHelper.h"
 
 #define BUFFER_SIZE 4096
+#define deltaF 5.3833
 
 @interface ViewController ()
 @property (strong, nonatomic) Novocaine *audioManager;
@@ -84,7 +85,7 @@
     
     // get audio stream data
     float* arrayData = calloc(BUFFER_SIZE*2, sizeof(float));
-    float* fftMagnitude = malloc(sizeof(float)*BUFFER_SIZE*2);
+    float* fftMagnitude = malloc(sizeof(float)*BUFFER_SIZE);
     
     [self.buffer fetchFreshData:arrayData withNumSamples:BUFFER_SIZE];
     
@@ -106,18 +107,25 @@
     
     // find the peaks
     float peak1 = fftMagnitude[0], peak2 = fftMagnitude[0];
-    for (int i = 0; i < BUFFER_SIZE*2; i++) {
+    int index1 = 0, index2 = 0;
+    
+    for (int i = 1; i < BUFFER_SIZE/2; i++) {
         if (fftMagnitude[i] > peak1) {
-            peak2 = peak1;
             peak1 = fftMagnitude[i];
-        } else if (fftMagnitude[i] > peak2) {
+            index1 = i;
+        }
+    }
+    
+    for (int i = 1; i < BUFFER_SIZE/2; i++) {
+        if (fftMagnitude[i] > peak2 && (i > index1 + 10 || i < index1 - 10)) {
             peak2 = fftMagnitude[i];
+            index2 = i;
         }
     }
     
     if (self.lockSwitch.isOn) {
-        self.label1.text = [NSString stringWithFormat:@"%f", peak1];
-        self.label2.text = [NSString stringWithFormat:@"%f", peak2];
+        self.label1.text = [NSString stringWithFormat:@"%f", index1*deltaF*2];
+        self.label2.text = [NSString stringWithFormat:@"%f", index2*deltaF*2];
     }
     
     [self.graphHelper update]; // update the graph
