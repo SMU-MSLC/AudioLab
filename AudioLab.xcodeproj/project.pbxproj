@@ -7,10 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B650B30D1D81FA3B000114A1 /* SMUGraphHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B650B30C1D81FA3B000114A1 /* SMUGraphHelper.m */; };
-		B68B9D431D7F57E6002037A3 /* AudioFileReader.m in Sources */ = {isa = PBXBuildFile; fileRef = B68B9D421D7F57E6002037A3 /* AudioFileReader.m */; };
 		B68B9D451D7F5874002037A3 /* satisfaction.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B68B9D441D7F5874002037A3 /* satisfaction.mp3 */; };
-		B68B9D481D7F5A5A002037A3 /* CircularBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = B68B9D471D7F5A5A002037A3 /* CircularBuffer.m */; };
 		B6BD9E1F1D6E384A0009AB3F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B6BD9E1E1D6E384A0009AB3F /* main.m */; };
 		B6BD9E221D6E384A0009AB3F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B6BD9E211D6E384A0009AB3F /* AppDelegate.m */; };
 		B6BD9E251D6E384A0009AB3F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6BD9E241D6E384A0009AB3F /* ViewController.m */; };
@@ -19,7 +16,6 @@
 		B6BD9E2D1D6E384A0009AB3F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6BD9E2B1D6E384A0009AB3F /* LaunchScreen.storyboard */; };
 		B6BD9E381D6E384A0009AB3F /* AudioLabTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B6BD9E371D6E384A0009AB3F /* AudioLabTests.m */; };
 		B6BD9E431D6E384A0009AB3F /* AudioLabUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B6BD9E421D6E384A0009AB3F /* AudioLabUITests.m */; };
-		B6BD9E531D6E398F0009AB3F /* Novocaine.m in Sources */ = {isa = PBXBuildFile; fileRef = B6BD9E521D6E398F0009AB3F /* Novocaine.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,13 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B650B30B1D81FA3B000114A1 /* SMUGraphHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUGraphHelper.h; sourceTree = "<group>"; };
-		B650B30C1D81FA3B000114A1 /* SMUGraphHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUGraphHelper.m; sourceTree = "<group>"; };
-		B68B9D411D7F57E6002037A3 /* AudioFileReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioFileReader.h; sourceTree = "<group>"; };
-		B68B9D421D7F57E6002037A3 /* AudioFileReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioFileReader.m; sourceTree = "<group>"; };
 		B68B9D441D7F5874002037A3 /* satisfaction.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = satisfaction.mp3; sourceTree = "<group>"; };
-		B68B9D461D7F5A5A002037A3 /* CircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircularBuffer.h; sourceTree = "<group>"; };
-		B68B9D471D7F5A5A002037A3 /* CircularBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircularBuffer.m; sourceTree = "<group>"; };
 		B6BD9E1A1D6E384A0009AB3F /* AudioLab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioLab.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6BD9E1E1D6E384A0009AB3F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B6BD9E201D6E384A0009AB3F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -63,8 +53,6 @@
 		B6BD9E3E1D6E384A0009AB3F /* AudioLabUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AudioLabUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6BD9E421D6E384A0009AB3F /* AudioLabUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioLabUITests.m; sourceTree = "<group>"; };
 		B6BD9E441D6E384A0009AB3F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B6BD9E511D6E398F0009AB3F /* Novocaine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Novocaine.h; path = AudioDSPUtils/Novocaine.h; sourceTree = "<group>"; };
-		B6BD9E521D6E398F0009AB3F /* Novocaine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Novocaine.m; path = AudioDSPUtils/Novocaine.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,8 +104,6 @@
 		B6BD9E1C1D6E384A0009AB3F /* AudioLab */ = {
 			isa = PBXGroup;
 			children = (
-				B650B30B1D81FA3B000114A1 /* SMUGraphHelper.h */,
-				B650B30C1D81FA3B000114A1 /* SMUGraphHelper.m */,
 				B6BD9E201D6E384A0009AB3F /* AppDelegate.h */,
 				B6BD9E211D6E384A0009AB3F /* AppDelegate.m */,
 				B6BD9E231D6E384A0009AB3F /* ViewController.h */,
@@ -161,12 +147,6 @@
 		B6BD9E501D6E39660009AB3F /* DSPUtils */ = {
 			isa = PBXGroup;
 			children = (
-				B68B9D461D7F5A5A002037A3 /* CircularBuffer.h */,
-				B68B9D471D7F5A5A002037A3 /* CircularBuffer.m */,
-				B68B9D411D7F57E6002037A3 /* AudioFileReader.h */,
-				B68B9D421D7F57E6002037A3 /* AudioFileReader.m */,
-				B6BD9E511D6E398F0009AB3F /* Novocaine.h */,
-				B6BD9E521D6E398F0009AB3F /* Novocaine.m */,
 			);
 			name = DSPUtils;
 			sourceTree = "<group>";
@@ -302,11 +282,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B68B9D481D7F5A5A002037A3 /* CircularBuffer.m in Sources */,
-				B68B9D431D7F57E6002037A3 /* AudioFileReader.m in Sources */,
-				B6BD9E531D6E398F0009AB3F /* Novocaine.m in Sources */,
 				B6BD9E251D6E384A0009AB3F /* ViewController.m in Sources */,
-				B650B30D1D81FA3B000114A1 /* SMUGraphHelper.m in Sources */,
 				B6BD9E221D6E384A0009AB3F /* AppDelegate.m in Sources */,
 				B6BD9E1F1D6E384A0009AB3F /* main.m in Sources */,
 			);
