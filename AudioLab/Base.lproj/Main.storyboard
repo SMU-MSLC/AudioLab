@@ -23,13 +23,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.26100000000000001" minValue="0.20000000000000001" maxValue="18" translatesAutoresizingMaskIntoConstraints="NO" id="W0o-zh-I7c">
-                                <rect key="frame" x="14" y="318" width="347" height="31"/>
+                                <rect key="frame" x="14" y="318.5" width="347" height="31"/>
                                 <connections>
                                     <action selector="frequencyChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="qCo-He-UZO"/>
                                 </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not Set" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yU1-9I-1uD">
-                                <rect key="frame" x="158.5" y="289" width="58" height="21"/>
+                                <rect key="frame" x="158.5" y="289.5" width="58" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -50,7 +50,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-111.2" y="34.632683658170919"/>
+            <point key="canvasLocation" x="-839" y="-206"/>
         </scene>
     </scenes>
 </document>
