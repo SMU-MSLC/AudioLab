@@ -13,7 +13,7 @@
 @interface ViewController ()
 @property (strong, nonatomic) Novocaine *audioManager;
 @property (strong, nonatomic) AudioFileReader *fileReader;
-
+@property (nonatomic) float volume;
 @end
 
 
@@ -38,6 +38,9 @@
     }
     return _fileReader;
 }
+- (IBAction)volumeChanged:(UISlider *)sender {
+    self.volume = sender.value;
+}
 
 #pragma mark VC Life Cycle
 - (void)viewDidLoad {
@@ -47,7 +50,7 @@
     //    [self.audioManager setInputBlock:^(float *data, UInt32 numFrames, UInt32 numChannels){
     //        NSLog(@"%f", data[0]);
     //    }];
-    
+    self.volume = 0.5;
     
     [self.fileReader play];
     self.fileReader.currentTime = 0.0;
@@ -56,6 +59,9 @@
     [self.audioManager setOutputBlock:^(float *data, UInt32 numFrames, UInt32 numChannels)
      {
          [weakSelf.fileReader retrieveFreshAudio:data numFrames:numFrames numChannels:numChannels];
+         for(int i=0;i<numFrames*numChannels;i++){
+             data[i] = data[i]*weakSelf.volume;
+         }
          NSLog(@"Time: %f", weakSelf.fileReader.currentTime);
      }];
     
