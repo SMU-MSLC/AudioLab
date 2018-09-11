@@ -35,28 +35,34 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self updateFrequencyInKhz:0.2616255]; // mid C
+//    [self updateFrequencyInKhz:0.2616255]; // mid C
     
     self.phaseIncrement = 2*M_PI*self.frequency/self.audioManager.samplingRate;
+    float phaseInc = 2*M_PI*440.0/self.audioManager.samplingRate;
     __block float phase = 0.0;
     [self.audioManager setOutputBlock:^(float* data, UInt32 numFrames, UInt32 numChannels){
-        for(int i=0;i<numFrames;i++){
-            for(int j=0;j<numChannels;j++){
-                data[i*numChannels+j] = sin(phase);
-            }
-            phase += self.phaseIncrement;
-            
-            if(phase>2*M_PI){
-                phase -= 2*M_PI;
-            }
-        }
         
+        for (int n=0; n<numFrames; n++) {
+            data[n] = sin(phase);
+            phase += self.phaseIncrement;
+        }
         
     }];
     
     [self.audioManager play];
     
 }
+
+//for(int i=0;i<numFrames;i++){
+//    for(int j=0;j<numChannels;j++){
+//        data[i*numChannels+j] = sin(phase);
+//    }
+//    phase += self.phaseIncrement;
+//
+//    if(phase>2*M_PI){
+//        phase -= 2*M_PI;
+//    }
+//}
 
 - (IBAction)frequencyChanged:(UISlider *)sender {
     [self updateFrequencyInKhz:sender.value];
