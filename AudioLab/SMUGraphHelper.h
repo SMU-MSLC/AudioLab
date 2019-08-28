@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#define kGraphMaxSize 8000
+#define kGraphMaxSize 80000
 #import <GLKit/GLKit.h>
 
 

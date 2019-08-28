@@ -11,7 +11,7 @@
 #import "CircularBuffer.h"
 #import "SMUGraphHelper.h"
 
-#define BUFFER_SIZE 2048
+#define BUFFER_SIZE 2048*10
 
 @interface ViewController ()
 @property (strong, nonatomic) Novocaine *audioManager;
@@ -42,7 +42,7 @@
     if(!_graphHelper){
         _graphHelper = [[SMUGraphHelper alloc]initWithController:self
                                         preferredFramesPerSecond:15
-                                                       numGraphs:1
+                                                       numGraphs:2
                                                        plotStyle:PlotStyleSeparated
                                                maxPointsPerGraph:BUFFER_SIZE];
     }
@@ -57,7 +57,7 @@
     // Do any additional setup after loading the view, typically from a nib.
     
    
-    [self.graphHelper setScreenBoundsBottomHalf];
+    [self.graphHelper setFullScreenBounds];
     
     __block ViewController * __weak  weakSelf = self;
     [self.audioManager setInputBlock:^(float *data, UInt32 numFrames, UInt32 numChannels){
@@ -80,6 +80,11 @@
     [self.graphHelper setGraphData:arrayData
                     withDataLength:BUFFER_SIZE
                      forGraphIndex:0];
+    
+    vDSP_vsq(arrayData,1,arrayData,1,BUFFER_SIZE);
+    [self.graphHelper setGraphData:arrayData
+                    withDataLength:BUFFER_SIZE
+                     forGraphIndex:1];
     
     [self.graphHelper update]; // update the graph
     free(arrayData);
