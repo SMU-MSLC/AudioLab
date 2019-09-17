@@ -34,8 +34,16 @@
     [super viewDidLoad];
     
 
-    [self.audioManager setOutputBlock:^(float* data, UInt32 numFrames, UInt32 numChannels){
+    [self.audioManager setInputBlock:^(float* data, UInt32 numFrames, UInt32 numChannels){
         
+        float maxVal = 0;
+        
+        for(int i=0;i<numFrames*numChannels;i++){
+            if(data[i]>maxVal){
+                maxVal = data[i];
+            }
+        }
+        NSLog(@"%.4f", maxVal);
        
     }];
     
